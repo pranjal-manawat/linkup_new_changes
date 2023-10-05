@@ -71,7 +71,7 @@ const ChangePassword = () => {
       <Input
         label="Password"
         type="text"
-        placeholder="Enter value"
+        placeholder="Enter Password"
         className=""
         {...register("password")}
         itemRequired
@@ -80,7 +80,7 @@ const ChangePassword = () => {
       <Input
         label="Confirm Password"
         type="text"
-        placeholder="Enter value"
+        placeholder="Enter Password"
         className=""
         {...register("confirmPassword")}
         itemRequired

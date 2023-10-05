@@ -63,7 +63,7 @@ const ResetPassword = () => {
       <Input
         label="Email"
         type="text"
-        placeholder="Enter value"
+        placeholder="Enter Email"
         className=""
         {...register("email")}
         itemRequired

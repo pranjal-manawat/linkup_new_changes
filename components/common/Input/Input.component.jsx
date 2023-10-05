@@ -1,7 +1,8 @@
-import React, { forwardRef } from "react";
+import React, { useState, forwardRef } from "react";
 import clsx from "clsx";
 import PropTypes from "prop-types";
 import Text from "../Text";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 
 const Input = forwardRef((props, ref) => {
   const {
@@ -13,10 +14,17 @@ const Input = forwardRef((props, ref) => {
     itemRequired = false,
     ...rest
   } = props;
+  const [showPassword, setShowPassword] = useState(false);
+  const inputType = showPassword ? "text" : type;
   const classes = clsx(
-    "border-b border-gray-300 focus:border-gray-500 outline-none py-1 w-full",
+    `border-b border-gray-300 ${type !== 'password' ? 'focus:border-gray-500' : ''} outline-none py-1 w-full`,
     className
   );
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <>
       <div className="flex mt-2 mb-2">
@@ -25,12 +33,21 @@ const Input = forwardRef((props, ref) => {
       </div>
       <div className="flex w-full mb-3">
         <input
-          type={type}
+          type={inputType}
           placeholder={placeholder}
           className={classes}
           ref={ref}
           {...rest}
         />
+        {type === "password" && (
+          <button
+            type="button"
+            className="border-b border-gray-300 outline-none"
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </button>
+        )}
       </div>
       <div className="flex">
       <Text variant="error">{errorMessage}</Text>

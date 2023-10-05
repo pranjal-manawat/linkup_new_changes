@@ -56,12 +56,12 @@ const LoginPage = () => {
       className="mt-5 max-w-[30%] ml-[35%] p-5 border-2 border-paperSecondary"
     >
       <div className="flex justify-center">
-        <Text variant="h4">Login</Text>
+        <Text variant="h4">LogIn</Text>
       </div>
       <Input
         label="Email"
         type="text"
-        placeholder="Enter value"
+        placeholder="Enter Email"
         className=""
         {...register("email")}
         itemRequired
@@ -69,8 +69,8 @@ const LoginPage = () => {
       />
       <Input
         label="Password"
-        type="text"
-        placeholder="Enter value"
+        type="password"
+        placeholder="Enter Password"
         className=""
         {...register("password")}
         itemRequired

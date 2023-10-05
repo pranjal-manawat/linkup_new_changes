@@ -10,6 +10,10 @@ const CreateUserForm = ({setOpenNewUserPointsModal, fetchEmployeesData}) => {
   const [employeeEmails, setEmployeeEmails] = useState([]);
 
   const signUpValidationSchema = yup.object().shape({
+    employeeId: yup
+      .number()
+      .typeError("Employee ID is required")
+      .test("positive","Employee ID must be greater than 0", (value) => value > 0),
     fullName: yup.string().required("Full Name is required"),
     email: yup
       .string()
@@ -27,10 +31,6 @@ const CreateUserForm = ({setOpenNewUserPointsModal, fetchEmployeesData}) => {
         message:
           "Password should be at least 8 characters. Should contain 1 uppercase, 1 lowercase, 1 special char",
       }),
-    employeeId: yup
-      .number()
-      .typeError("Employee ID is required")
-      .test("positive","Employee ID must be greater than 0", (value) => value > 0),
   });
 
   const {
@@ -40,10 +40,10 @@ const CreateUserForm = ({setOpenNewUserPointsModal, fetchEmployeesData}) => {
   } = useForm({
     mode: "all",
     defaultValues: {
+      employeeId: null,
       fullName: "",
       email: "",
       password: "",
-      employeeId: null,
     },
     resolver: yupResolver(signUpValidationSchema),
   });
@@ -92,9 +92,18 @@ const CreateUserForm = ({setOpenNewUserPointsModal, fetchEmployeesData}) => {
       className="p-4 pt-1"
     >
       <Input
+        label="Employee Id"
+        type="number"
+        placeholder="Enter Employee ID"
+        className=""
+        {...register("employeeId")}
+        itemRequired
+        errorMessage={errors?.employeeId?.message}
+      />
+      <Input
         label="Full Name"
         type="text"
-        placeholder="Enter value"
+        placeholder="Enter Full Name"
         className=""
         {...register("fullName")}
         itemRequired
@@ -103,25 +112,16 @@ const CreateUserForm = ({setOpenNewUserPointsModal, fetchEmployeesData}) => {
       <Input
         label="Email"
         type="text"
-        placeholder="Enter value"
+        placeholder="Enter Email"
         className=""
         {...register("email")}
         itemRequired
         errorMessage={errors?.email?.message}
       />
       <Input
-        label="Employee Id"
-        type="number"
-        placeholder="Enter value"
-        className=""
-        {...register("employeeId")}
-        itemRequired
-        errorMessage={errors?.employeeId?.message}
-      />
-      <Input
         label="Password"
-        type="text"
-        placeholder="Enter value"
+        type="password"
+        placeholder="Enter Password"
         className=""
         {...register("password")}
         itemRequired

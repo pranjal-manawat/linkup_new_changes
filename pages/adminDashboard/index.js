@@ -122,7 +122,7 @@ const AdminDashboard = () => {
           <Input
             label="Points"
             type="number"
-            placeholder="Enter value"
+            placeholder="Enter Points"
             className=""
             {...register("points")}
             itemRequired
@@ -131,7 +131,7 @@ const AdminDashboard = () => {
           <Input
             label="Description"
             type="text"
-            placeholder="Enter value"
+            placeholder="Enter Description"
             className=""
             {...register("description")}
             itemRequired

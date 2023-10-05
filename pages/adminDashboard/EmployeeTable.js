@@ -70,14 +70,14 @@ const EmployeeTable = ({
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
+          <th scope="col" className="px-6 py-3">
+              Employee ID
+            </th>
             <th scope="col" className="px-6 py-3">
               Full Name
             </th>
             <th scope="col" className="px-6 py-3">
               Email
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Employee ID
             </th>
             <th scope="col" className="px-6 py-3">
               Total Points
@@ -99,10 +99,10 @@ const EmployeeTable = ({
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
-                      {employee.fullName}
+                      {employee.employeeId}
                     </th>
+                    <td className="px-6 py-4">{employee.fullName}</td>
                     <td className="px-6 py-4">{employee.email}</td>
-                    <td className="px-6 py-4">{employee.employeeId}</td>
                     <td className="px-6 py-4">{employee.rewardPoints}</td>
                     <td className="flex items-center px-6 py-4 space-x-3">
                       <Button
