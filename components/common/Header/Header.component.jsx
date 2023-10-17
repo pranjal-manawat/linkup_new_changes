@@ -32,11 +32,28 @@ const Header = ({ setOpenChangePasswordPopup }) => {
       <Text variant="h5" className="mt-auto mb-auto ml-10">
         {fullName}
       </Text>
-      {isAdmin !=='true' ? (
+      {isAdmin === "true" && window.location.pathname === "/home" ? (
         <Text
-          variant="hint"
-          className="!text-primaryText cursor-pointer absolute"
-          style={{ right: "170px", top: "18px" }}
+          variant="caption"
+          className="!text-primaryBg cursor-pointer absolute right-[310px] top-[16px]"
+          onClick={() => router.push("adminDashboard")}
+        >
+          Admin Dashboard
+        </Text>
+      ) : null}
+      {isAdmin === "true" && window.location.pathname === "/adminDashboard" ? (
+        <Text
+          variant="caption"
+          className="!text-primaryBg cursor-pointer absolute right-[160px] top-[16px]"
+          onClick={() => router.push("home")}
+        >
+          Home
+        </Text>
+      ) : null}
+      {window.location.pathname === "/home" ? (
+        <Text
+          variant="caption"
+          className="!text-primaryBg cursor-pointer absolute right-[160px] top-[16px]"
           onClick={() => setOpenChangePasswordPopup(true)}
         >
           Change Password

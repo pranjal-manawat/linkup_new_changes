@@ -81,7 +81,7 @@ const LoginPage = () => {
         type="submit"
         className="ml-auto mr-auto mt-2 w-full"
       />
-      <div className="inline-flex">
+      {/* <div className="inline-flex">
         <Text variant="hint" className="mt-3">
           New User?
         </Text>
@@ -92,14 +92,14 @@ const LoginPage = () => {
         >
           Create Account
         </Text>
-        {/* <Text
+        <Text
           variant="hint"
           className="mt-3 ml-32 !text-primaryText cursor-pointer"
           onClick={() => router.push("resetPassword")}
         >
           Forgot Password
-        </Text> */}
-      </div>
+        </Text>
+      </div> */}
     </form>
   );
 };

@@ -14,10 +14,10 @@ const SignUpPage = () => {
   const signUpValidationSchema = yup.object().shape({
     employeeId: yup
       .number()
-      .typeError("Employee ID is required")
+      .typeError("Team Member ID is required")
       .test(
         "positive",
-        "Employee ID must be greater than 0",
+        "Team Member ID must be greater than 0",
         (value) => value > 0
       ),
     fullName: yup.string().required("Full Name is required"),
@@ -99,9 +99,9 @@ const SignUpPage = () => {
         <Text variant="h4">SignUp</Text>
       </div>
       <Input
-        label="Employee Id"
+        label="Team Member Id"
         type="number"
-        placeholder="Enter Employee ID"
+        placeholder="Enter Team Member ID"
         className=""
         {...register("employeeId")}
         itemRequired
