@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Button, Input } from "../../components/common";
 import PropTypes from "prop-types";
 import { FaFileExcel } from "react-icons/fa";
-import * as XLSX from 'xlsx';
+import * as XLSX from "xlsx";
 
 const EmployeeTable = ({
   employeesData,
   handleUpdatePointsClick,
+  handlePointsHistoryClick,
   setOpenNewUserPointsModal,
 }) => {
   const [employees, setEmployees] = useState(employeesData);
@@ -84,7 +85,7 @@ const EmployeeTable = ({
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" className="px-6 py-3">
-            Team Member ID
+              Team Member ID
             </th>
             <th scope="col" className="px-6 py-3">
               Full Name
@@ -95,7 +96,7 @@ const EmployeeTable = ({
             <th scope="col" className="px-6 py-3">
               Total Points
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className=" py-3">
               Action
             </th>
           </tr>
@@ -117,12 +118,19 @@ const EmployeeTable = ({
                     <td className="px-6 py-4">{employee.fullName}</td>
                     <td className="px-6 py-4">{employee.email}</td>
                     <td className="px-6 py-4">{employee.rewardPoints}</td>
-                    <td className="flex items-center px-6 py-4 space-x-3">
+                    <td className="flex items-center  py-4 space-x-3">
                       <Button
                         text="Update Points"
                         type="button"
                         onClick={() => {
                           handleUpdatePointsClick(employee);
+                        }}
+                      />
+                      <Button
+                        text="Points History"
+                        type="button"
+                        onClick={() => {
+                          handlePointsHistoryClick(employee);
                         }}
                       />
                     </td>

@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getData, postData } from "../../utils/rest";
+import PointsHistoryTable from "./PointsHistoryTable";
 import EmployeeTable from "./EmployeeTable";
 import CreateUserForm from "./CreateUserForm";
 import { toast } from "react-hot-toast";
@@ -14,7 +15,9 @@ const AdminDashboard = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const [employeesData, setEmployeesData] = useState([]);
+  const [pointsHistoryData, setPointsHistoryData] = useState([]);
   const [openPointsModal, setOpenPointsModal] = useState(false);
+  const [openPointsHistoryModal, setOpenPointsHistoryModal] = useState(false);
   const [openNewUserModal, setOpenNewUserPointsModal] = useState(false);
   const [activeUserId, setActiveUserId] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -32,9 +35,27 @@ const AdminDashboard = () => {
     }
   };
 
+  const fetchPointsHistory = async (employeeId) => {
+    try {
+      const url = `http://localhost:5000/pointsHistory?employeeId=${employeeId}`;
+      const { data } = await getData(url);
+      const pointsHistory = data?.data || [];
+      console.log("pointsHistory ", pointsHistory);
+      setPointsHistoryData(pointsHistory);
+    } catch (e) {
+      console.error("Error in fetching Points ", e);
+    }
+  };
+
   const handleUpdatePointsClick = (data) => {
     setOpenPointsModal(true);
     setActiveUserId(data.employeeId);
+  };
+
+  const handlePointsHistoryClick = (data) => {
+    const employeeId = data.employeeId;
+    fetchPointsHistory(employeeId);
+    setOpenPointsHistoryModal(true);
   };
 
   const PointsForm = () => {
@@ -182,6 +203,7 @@ const AdminDashboard = () => {
         <EmployeeTable
           employeesData={employeesData}
           handleUpdatePointsClick={handleUpdatePointsClick}
+          handlePointsHistoryClick={handlePointsHistoryClick}
           setOpenNewUserPointsModal={setOpenNewUserPointsModal}
         />
       ) : null}
@@ -191,6 +213,13 @@ const AdminDashboard = () => {
         children={<PointsForm activeUserId={activeUserId} />}
         title="Update Points"
         className="w-[30%]"
+      />
+      <Modal
+        open={openPointsHistoryModal}
+        handleClose={() => setOpenPointsHistoryModal(false)}
+        children={<PointsHistoryTable pointsHistoryData={pointsHistoryData} />}
+        title="Points History"
+        className="w-[60%]"
       />
       <Modal
         open={openNewUserModal}
